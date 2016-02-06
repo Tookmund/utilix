@@ -18,9 +18,9 @@ Utilities needed
 * cat 
 * ls
 * new (Make new file)
+* mkdir
 -->
 * dd
-* mkdir
 * rm
 * rmr (equivalent of rm -r)
 * stat (print one-line status of file)

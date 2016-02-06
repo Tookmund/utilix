@@ -20,6 +20,7 @@ MANSUFFIX = 1
 TGTS= \
 cat \
 ls \
+mkdir \
 new
 
 all: ${TGTS}

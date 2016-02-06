@@ -23,3 +23,4 @@ Utilities needed
 * sort (sort strings)
 * cut (Get a specific token)
 * column
+* new (Make new file)

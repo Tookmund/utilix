@@ -19,7 +19,8 @@ MANSUFFIX = 1
 # Should be alphabetical
 TGTS= \
 cat \
-ls
+ls \
+new
 
 all: ${TGTS}
 

@@ -60,6 +60,7 @@ int main (int argc, char** argv) {
 			perror(pf);
 			continue;
 		}
+		free(buf);
 	}
 	return 0;
 }

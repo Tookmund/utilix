@@ -20,7 +20,8 @@
 #include <unistd.h>
 
 #define MAXBUF 1000
-int main (int argc, char** argv) {
+
+int main (int argc, char* argv[]) {
 	int i;
 	struct stat st;
 	char* buf;

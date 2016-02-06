@@ -22,3 +22,4 @@ Utilities needed
 * match (search for exact string)
 * sort (sort strings)
 * cut (Get a specific token)
+* column

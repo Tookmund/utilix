@@ -20,7 +20,7 @@ Utilities needed
 * rmr (equivalent of rm -r)
 * stat (print one-line status of file)
 * match (search for exact string)
-* sort (sort strings)
+* sort (sort strings; punctution, numbers, letters)
 * cut (Get a specific token)
 * column
 * new (Make new file)

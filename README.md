@@ -3,8 +3,8 @@ Utilix
 
 A set of POSIX-inspired utilities
 
-The idea is to rethink how these utilities work and how they can be made more
-efficient.
+The idea is to rethink how these utilities work and how they can be made to
+work better.
 
 *N.B. These are not POSIX-compliant and are not intended to be*
 

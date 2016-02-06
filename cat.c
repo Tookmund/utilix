@@ -22,8 +22,7 @@
 #define MAXBUF 1000
 int main (int argc, char** argv) {
 	int i;
-	struct stat statbuf;
-	struct stat *st = &statbuf;
+	struct stat st;
 	char* buf;
 	int ret;
 	int fd;
@@ -31,15 +30,15 @@ int main (int argc, char** argv) {
 	int wr;
 	char pf[MAXBUF];
 	for (i = 1; i < argc; i++) {
-		ret = stat(argv[i],st);
+		ret = stat(argv[i],&st);
 		if (ret < 0) {
 			snprintf(pf,MAXBUF,"Stat %s", argv[i]);
 			perror(pf);
 			continue;
 		}
-		buf = (char*)malloc(st->st_size);
+		buf = (char*)malloc(st.st_size);
 		if (buf == NULL) {
-			snprintf(pf,MAXBUF,"Malloc %s %ld",argv[i],st->st_size);
+			snprintf(pf,MAXBUF,"Malloc %s %ld",argv[i],st.st_size);
 			perror(pf);
 			continue;
 		}
@@ -49,13 +48,13 @@ int main (int argc, char** argv) {
 			perror(pf);
 			continue;
 		}
-		rd = read(fd,buf,st->st_size);
+		rd = read(fd,buf,st.st_size);
 		if (rd < 0) {
 			snprintf(pf,MAXBUF,"Read %s",argv[i]);
 			perror(pf);
 			continue;
 		}
-		wr = write(STDOUT_FILENO,buf,st->st_size);
+		wr = write(STDOUT_FILENO,buf,st.st_size);
 		if (wr < 0) {
 			snprintf(pf,MAXBUF,"Write %s",argv[i]);
 			perror(pf);

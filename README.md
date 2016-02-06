@@ -10,7 +10,7 @@ efficient.
 
 These are intended to be a replacement base system for any POSIX-based system
 but will not be compliant with the POSIX standard by default. Wrappers will
-be provided. 
+be considered, but I won't be writing any.
 
 Utilities needed
 ----------------

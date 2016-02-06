@@ -54,3 +54,11 @@ uninstall.man:
 	do \
 		rm ${MANDIR}/$${i}.${MANSUFFIX} ; \
 	done
+
+# Generate .gitignore
+gitignore:
+	> .gitignore
+	for i in ${TGTS} ; \
+	do \
+		echo $${i} >> .gitignore ; \
+	done

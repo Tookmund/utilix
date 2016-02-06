@@ -24,7 +24,10 @@ Utilities needed
 * rm
 * rmr (equivalent of rm -r)
 * stat (print one-line status of file)
-* match (search for exact string)
-* sort (sort strings; punctution, numbers, letters)
 * cut (Get a specific token)
+* df
+* du
+* cp (mv can be achieved with alias mv='cp | rm'
+* sort (sort strings; punctution, numbers, letters)
 * column
+* match (search for exact string)

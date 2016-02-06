@@ -19,7 +19,7 @@
 
 int main(int argc, char* argv[]) {
 	if (argc < 2) {
-		printf("%s [filename]",argv[0]);
+		printf("%s [filename]\n",argv[0]);
 	}
 	else {
 		int fd = open(argv[1],O_CREAT | O_EXCL);

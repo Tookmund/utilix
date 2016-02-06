@@ -14,6 +14,11 @@ be provided.
 
 Utilities needed
 ----------------
+<!--
+* cat 
+* ls
+* new (Make new file)
+-->
 * dd
 * mkdir
 * rm
@@ -23,4 +28,3 @@ Utilities needed
 * sort (sort strings; punctution, numbers, letters)
 * cut (Get a specific token)
 * column
-* new (Make new file)

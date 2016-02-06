@@ -16,13 +16,14 @@
 #include <sys/stat.h>
 #include <errno.h>
 #include <stdio.h>
+#include "perm.h"
 
 int main(int argc, char* argv[]) {
 	if (argc < 2) {
 		printf("%s [directory]\n",argv[0]);
 	}
 	else {
-		int fd = mkdir(argv[1],0777);
+		int fd = mkdir(argv[1],MODE);
 		if (fd < 0) {
 			perror(argv[1]);
 			return errno;

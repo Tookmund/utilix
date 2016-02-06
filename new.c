@@ -16,13 +16,14 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <stdio.h>
+#include "perm.h"
 
 int main(int argc, char* argv[]) {
 	if (argc < 2) {
 		printf("%s [filename]\n",argv[0]);
 	}
 	else {
-		int fd = open(argv[1],O_CREAT | O_EXCL);
+		int fd = open(argv[1],O_CREAT | O_EXCL,MODE);
 		if (fd < 0) {
 			perror(argv[1]);
 			return 1;

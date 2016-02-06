@@ -14,11 +14,11 @@ be provided.
 
 Utilities needed
 ----------------
-dd
-mkdir
-rm
-rmr (equivalent of rm -r)
-stat (print one-line status of file)
-match (search for exact string)
-sort (sort strings)
-cut (Get a specific token)
+* dd
+* mkdir
+* rm
+* rmr (equivalent of rm -r)
+* stat (print one-line status of file)
+* match (search for exact string)
+* sort (sort strings)
+* cut (Get a specific token)

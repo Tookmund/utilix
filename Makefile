@@ -31,7 +31,8 @@ TGTS= \
 cat \
 ls \
 mkdir \
-new
+new \
+unpg
 
 all: ${TGTS}
 

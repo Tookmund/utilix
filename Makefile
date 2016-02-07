@@ -42,13 +42,13 @@ install: ${TGTS}
 	mkdir -p ${BIN}
 	for i in ${TGTS} ; \
 	do \
-		cp ${${i}} ${BIN} ; \
+		cp $${i} ${BIN} ; \
 	done
 
 uninstall: ${TGTS}
 	for i in ${TGTS} ; \
 	do \
-		rm ${BIN}/${${i}} ; \
+		rm ${BIN}/$${i} ; \
 	done
 
 # Borrowed from 9wm
@@ -57,13 +57,13 @@ install.man:
 	mkdir -p $(MANDIR)
 	for i in ${TGTS} ; \
 	do \
-		cp ${${i}}.man $(MANDIR)/${${i}}.$(MANSUFFIX) ; \
+		cp $${i}.man $(MANDIR)/$${i}.$(MANSUFFIX) ; \
 	done
 
 uninstall.man:
 	for i in ${TGTS} ; \
 	do \
-		rm ${MANDIR}/${${i}}.${MANSUFFIX} ; \
+		rm ${MANDIR}/$${i}.${MANSUFFIX} ; \
 	done
 
 # Generate .gitignore
@@ -71,5 +71,5 @@ gitignore:
 	> .gitignore
 	for i in ${TGTS} ; \
 	do \
-		echo ${${i}} >> .gitignore ; \
+		echo $${i} >> .gitignore ; \
 	done

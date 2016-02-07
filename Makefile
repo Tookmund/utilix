@@ -29,6 +29,7 @@ MANDIR = ${DESTDIR}/usr/local/share/man/man${MANSUFFIX}
 # Should be alphabetical
 TGTS= \
 cat \
+dd \
 ls \
 mkdir \
 new \

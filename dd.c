@@ -61,7 +61,7 @@ int main (int argc, char* argv[]) {
 		}
 	}
 	else {
-		bs = MB;
+		bs = 1000;
 		buf = (char*)malloc(bs);
 		if (buf == NULL) {
 			perror("Malloc");

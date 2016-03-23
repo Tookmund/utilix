@@ -34,6 +34,7 @@ env \
 ls \
 mkdir \
 new \
+unenv \
 unpg
 
 all: ${TGTS}

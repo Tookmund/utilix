@@ -44,10 +44,10 @@ int main (int argc, char* argv[]) {
 	int ofd;
 	char* buf;
 	// Check stdin and stdout (indicated by - )
-	if (!strcmp(argv[1],"-")) {
+	if (strcmp(argv[1],"-") == 0) {
 		ifd = 0;
 	}
-	if (!strcmp(argv[2],"-")) {
+	if (strcmp(argv[2],"-") == 0) {
 		ofd = 1;
 	}
 	int bs;
@@ -61,7 +61,7 @@ int main (int argc, char* argv[]) {
 		}
 	}
 	else {
-		bs = MB;
+		bs = 1000;
 		buf = (char*)malloc(bs);
 		if (buf == NULL) {
 			perror("Malloc");

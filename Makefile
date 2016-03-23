@@ -30,6 +30,7 @@ MANDIR = ${DESTDIR}/usr/local/share/man/man${MANSUFFIX}
 TGTS= \
 cat \
 dd \
+env \
 ls \
 mkdir \
 new \

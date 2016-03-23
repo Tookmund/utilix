@@ -1,5 +1,6 @@
 cat
 dd
+env
 ls
 mkdir
 new

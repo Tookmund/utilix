@@ -47,8 +47,26 @@ int main (int argc, char* argv[]) {
 	if (strcmp(argv[1],"-") == 0) {
 		ifd = 0;
 	}
+	else
+	{
+		ifd = open(argv[1], O_RDONLY);
+		if (ifd  < 0)
+		{
+			perror("dd ifd open");
+			return 1;
+		}
+	}
 	if (strcmp(argv[2],"-") == 0) {
 		ofd = 1;
+	}
+	else
+	{
+		ofd = open(argv[2],O_WRONLY);
+		if (ofd < 0)
+		{
+			perror("dd ofd open");
+			return 1;
+		}
 	}
 	int bs;
 	if (argc == 4) {

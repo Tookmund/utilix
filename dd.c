@@ -67,11 +67,27 @@ int main (int argc, char* argv[]) {
 			perror("Malloc");
 			return 1;
 		}
-		int rd;
-		int wr;
-		while ( !(rd < 0 && wr < 0) ) {
+	}
+	int rd;
+	int wr;
+	// If there is data in the buffer
+	char isbuf = 0;
+	int nfds = ifd > ofd ? ifd+1 : ofd+1;
+	fd_set readfd[1];
+	fd_set writefd[1];
+	while ( !(rd < 0 && wr < 0) ) {
+		FD_SET(ifd,readfd);
+		FD_SET(ofd,writefd);
+		select(nfds,readfd,writefd,NULL,NULL);
+		if (FD_ISSET(ifd,readfd) && !isbuf)
+		{
 			rd = read(ifd,buf,bs);
+			isbuf = 1;
+		}
+		if (FD_ISSET(ofd,writefd) && isbuf)
+		{
 			wr = write(ofd,buf,bs);
+			isbuf = 0;
 		}
 	}
 	free(buf);

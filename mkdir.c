@@ -31,7 +31,7 @@ int main(int argc, char* argv[]) {
 		printf("%s [directory]\n",argv[0]);
 	}
 	else {
-		int fd = mkdir(argv[1],getmode());
+		int fd = mkdir(argv[1],getdirmode());
 		if (fd < 0) {
 			perror(argv[1]);
 			return errno;

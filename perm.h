@@ -4,6 +4,11 @@
  * Copyright 2016 Jacob Adams <tookmund@gmail.com>
  * Copyright (c) 1983, 1992, 1993
  *	The Regents of the University of California.  All rights reserved.
+ * (c) UNIX System Laboratories, Inc.
+ * All or some portions of this file are derived from material licensed
+ * to the University of California by American Telephone and Telegraph
+ * Co. or Unix System Laboratories, Inc. and are reproduced herein with
+ * the permission of UNIX System Laboratories, Inc.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -36,8 +41,9 @@
  * intermediate path name components, the mode is the default modified
   * by u+wx so that the subdirectories can always be created.
  */
-
-mode_t getmode()
+mode_t getdirmode()
 {
 	return ( 0777 & ~umask(0) ) | S_IWUSR | S_IXUSR;
 }
+
+#define FILEMODE     (S_IRUSR|S_IWUSR|S_IRGRP|S_IWGRP|S_IROTH|S_IWOTH)

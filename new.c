@@ -31,7 +31,7 @@ int main(int argc, char* argv[]) {
 		printf("%s [filename]\n",argv[0]);
 	}
 	else {
-		int fd = open(argv[1],O_CREAT | O_EXCL,getmode());
+		int fd = open(argv[1],O_CREAT | O_EXCL,FILEMODE);
 		if (fd < 0) {
 			perror(argv[1]);
 			return 1;
@@ -39,4 +39,3 @@ int main(int argc, char* argv[]) {
 		return 0;
 	}
 }
-/* [description]

@@ -100,11 +100,21 @@ int main (int argc, char* argv[]) {
 		if (FD_ISSET(ifd,readfd) && !isbuf)
 		{
 			rd = read(ifd,buf,bs);
+			if (rd < 0)
+			{
+				perror("dd ifd read");
+				return 1;
+			}
 			isbuf = 1;
 		}
 		if (FD_ISSET(ofd,writefd) && isbuf)
 		{
 			wr = write(ofd,buf,bs);
+			if (wr < 0)
+			{
+				perror("dd ofd write");
+				return 1;
+			}
 			isbuf = 0;
 		}
 	}

@@ -92,12 +92,16 @@ int main (int argc, char* argv[]) {
 	int wr;
 	// If there is data in the buffer
 	char isbuf = 0;
-	int nfds = ifd > ofd ? ifd+1 : ofd+1;
+	int nfds = 1;
+	if (ofd > ifd) nfds += ofd;
+	else nfds += ifd;
 	fd_set readfd[1];
 	fd_set writefd[1];
+
 	while ( !(rd < 0 && wr < 0) ) {
-		FD_SET(ifd,readfd);
-		FD_SET(ofd,writefd);
+		if (!FD_ISSET(ifd,readfd)) FD_SET(ifd,readfd);
+		if (!FD_ISSET(ofd,writefd)) FD_SET(ofd,writefd);
+
 		select(nfds,readfd,writefd,NULL,NULL);
 		if (FD_ISSET(ifd,readfd) && !isbuf)
 		{
@@ -109,6 +113,7 @@ int main (int argc, char* argv[]) {
 			}
 			isbuf = 1;
 		}
+
 		if (FD_ISSET(ofd,writefd) && isbuf)
 		{
 			wr = write(ofd,buf,bs);

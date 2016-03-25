@@ -32,6 +32,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "perm.h"
+
 // MB is 1000 KD is 1000 B
 #define MB (1000*1000*1000)
 #define ERRSIZE 100
@@ -49,7 +51,7 @@ int main (int argc, char* argv[]) {
 	}
 	else
 	{
-		ifd = open(argv[1], O_RDONLY);
+		ifd = open(argv[1], O_RDONLY | O_CREAT,FILEMODE);
 		if (ifd  < 0)
 		{
 			perror("dd ifd open");
@@ -61,7 +63,7 @@ int main (int argc, char* argv[]) {
 	}
 	else
 	{
-		ofd = open(argv[2],O_WRONLY);
+		ofd = open(argv[2],O_WRONLY | O_CREAT,FILEMODE);
 		if (ofd < 0)
 		{
 			perror("dd ofd open");

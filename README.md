@@ -19,7 +19,7 @@ Utilities needed
 * ~~new (Make new file)~~
 * ~~mkdir~~
 * ~~dd~~
-* rm
+* ~~rm~~
 * rmr (equivalent of rm -r)
 * stat (print one-line status of file)
 * cut (Get a specific token)

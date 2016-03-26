@@ -36,6 +36,7 @@ mkdir \
 new \
 rm \
 rmdir \
+stat \
 unenv \
 unpg
 

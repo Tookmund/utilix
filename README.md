@@ -14,18 +14,20 @@ be considered, but I won't be writing any.
 
 Utilities needed
 ----------------
- - [x] cat 
- - [x] ls
- - [x] new (Make new file)
- - [x] mkdir
- - [x] dd
- - [ ] rm
- - [ ] rmr (equivalent of rm -r)
- - [ ] stat (print one-line status of file)
- - [ ] cut (Get a specific token)
- - [ ] df
- - [ ] du
- - [ ] cp (mv can be achieved with alias mv='cp | rm'
- - [ ] sort (sort strings; punctution, numbers, letters)
- - [ ] column
- - [ ] match (search for exact string)
+<!--
+* cat 
+* ls
+* new (Make new file)
+* mkdir
+-->
+* dd
+* rm
+* rmr (equivalent of rm -r)
+* stat (print one-line status of file)
+* cut (Get a specific token)
+* df
+* du
+* cp (mv can be achieved with alias mv='cp | rm'
+* sort (sort strings; punctution, numbers, letters)
+* column
+* match (search for exact string)

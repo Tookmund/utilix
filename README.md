@@ -14,12 +14,12 @@ be considered, but I won't be writing any.
 
 Utilities needed
 ----------------
-<!--
+~~
 * cat 
 * ls
 * new (Make new file)
 * mkdir
--->
+~~
 * dd
 * rm
 * rmr (equivalent of rm -r)

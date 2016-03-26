@@ -25,7 +25,6 @@ Utilities needed
 * cut (Get a specific token)
 * df
 * du
-* cp (mv can be achieved with alias mv='cp | rm'
 * sort (sort strings; punctution, numbers, letters)
 * column
 * match (search for exact string)

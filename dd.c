@@ -44,6 +44,7 @@ int main (int argc, char* argv[]) {
 	}
 	int ifd;
 	int ofd;
+	mode_t mode = FILEMODE;
 	char* buf;
 	// Check stdin and stdout (indicated by - )
 	if (strcmp(argv[1],"-") == 0) {
@@ -51,19 +52,24 @@ int main (int argc, char* argv[]) {
 	}
 	else
 	{
-		ifd = open(argv[1], O_RDONLY | O_CREAT,FILEMODE);
+		ifd = open(argv[1], O_RDONLY | O_CREAT,mode);
 		if (ifd  < 0)
 		{
 			perror("dd ifd open");
 			return 1;
 		}
+		// Get mode
+		struct stat st;
+		int e = fstat(ifd,&st);
+		if (e < 0) perror("dd ifd fstat");
+		else mode = st.st_mode;
 	}
 	if (strcmp(argv[2],"-") == 0) {
 		ofd = 1;
 	}
 	else
 	{
-		ofd = open(argv[2],O_WRONLY | O_CREAT | O_TRUNC,FILEMODE);
+		ofd = open(argv[2],O_WRONLY | O_CREAT | O_TRUNC,mode);
 		if (ofd < 0)
 		{
 			perror("dd ofd open");

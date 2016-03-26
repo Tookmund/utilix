@@ -26,8 +26,8 @@
 
 #include <sys/types.h>
 #include <sys/stat.h>
-#include <fcntl.h>
 #include <unistd.h>
+#include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -63,7 +63,7 @@ int main (int argc, char* argv[]) {
 	}
 	else
 	{
-		ofd = open(argv[2],O_WRONLY | O_CREAT,FILEMODE);
+		ofd = open(argv[2],O_WRONLY | O_CREAT | O_TRUNC,FILEMODE);
 		if (ofd < 0)
 		{
 			perror("dd ofd open");
@@ -90,40 +90,34 @@ int main (int argc, char* argv[]) {
 	}
 	int rd;
 	int wr;
-	// If there is data in the buffer
-	char isbuf = 0;
-	int nfds = 1;
-	if (ofd > ifd) nfds += ofd;
-	else nfds += ifd;
-	fd_set readfd[1];
-	fd_set writefd[1];
-
-	while ( !(rd < 0 && wr < 0) ) {
-		if (!FD_ISSET(ifd,readfd)) FD_SET(ifd,readfd);
-		if (!FD_ISSET(ofd,writefd)) FD_SET(ofd,writefd);
-
-		select(nfds,readfd,writefd,NULL,NULL);
-		if (FD_ISSET(ifd,readfd) && !isbuf)
+	// Non-blocking reads and writes
+	int fc = fcntl(ifd, F_SETFD, O_NONBLOCK);
+	if (fc < 0)
+	{
+		perror("dd ifd fcntl");
+		return 1;
+	}
+	fc = fcntl(ofd, F_SETFD, O_NONBLOCK);
+	if (fc < 0)
+	{
+		perror("dd ofd fcntl");
+		return 1;
+	}
+	while ( !(rd < 0 && wr < 0) )
+	{
+		rd = read(ifd,buf,bs);
+		if (rd < 0)
 		{
-			rd = read(ifd,buf,bs);
-			if (rd < 0)
-			{
-				perror("dd ifd read");
-				return 1;
-			}
-			isbuf = 1;
+			perror("dd ifd read");
+			return 1;
 		}
-
-		if (FD_ISSET(ofd,writefd) && isbuf)
+		wr = write(ofd,buf,bs);
+		if (wr < 0)
 		{
-			wr = write(ofd,buf,bs);
-			if (wr < 0)
-			{
-				perror("dd ofd write");
-				return 1;
-			}
-			isbuf = 0;
+			perror("dd ofd write");
+			return 1;
 		}
+		memset(buf,0,bs);
 	}
 	free(buf);
 	return 0;

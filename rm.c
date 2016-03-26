@@ -30,14 +30,11 @@ int main (int argc, char** argv)
 		printf("Usage: %s [filename(s)]\n",argv[0]);
 		return 1;
 	}
-	else if (argc == 2)
+	int e = 0;
+	for (int i = 1; i < argc; i++)
 	{
-		int e = 0;
-		for (int i = 1; i < argc; i++)
-		{
-			e = unlink(argv[i]);
-			if (e < 0) perror(argv[0]);
-		}
+		e = remove(argv[i]);
+		if (e < 0) perror(argv[0]);
 	}
 	return 0;
 }

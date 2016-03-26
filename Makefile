@@ -35,6 +35,7 @@ ls \
 mkdir \
 new \
 rm \
+rmdir \
 unenv \
 unpg
 

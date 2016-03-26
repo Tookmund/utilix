@@ -25,9 +25,19 @@
 
 int main (int argc, char** argv)
 {
-	int e = 1;
-	if (argc < 2) printf("Usage: %s [filename]\n",argv[0]);
-	else e = unlink(argv[1]);
-	if (e < 0) perror("rm");
+	if (argc < 2)
+	{
+		printf("Usage: %s [filename(s)]\n",argv[0]);
+		return 1;
+	}
+	else if (argc == 2)
+	{
+		int e = 0;
+		for (int i = 1; i < argc; i++)
+		{
+			e = unlink(argv[i]);
+			if (e < 0) perror(argv[0]);
+		}
+	}
 	return 0;
 }

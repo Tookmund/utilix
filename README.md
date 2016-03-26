@@ -20,8 +20,7 @@ Utilities needed
 * ~~mkdir~~
 * ~~dd~~
 * ~~rm~~
-* rmdir
-* rmr (equivalent of rm -r)
+* ~~rmdir~~
 * mv
 * stat (print one-line status of file)
 * cut (Get a specific token)

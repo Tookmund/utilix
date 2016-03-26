@@ -103,7 +103,7 @@ int main (int argc, char* argv[]) {
 		perror("dd ofd fcntl");
 		return 1;
 	}
-	while ( !(rd < 0 && wr < 0) )
+	while (rd > 0 && wr >= 0)
 	{
 		rd = read(ifd,buf,bs);
 		if (rd < 0)

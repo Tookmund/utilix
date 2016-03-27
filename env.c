@@ -26,7 +26,8 @@ extern char** environ;
 
 int main()
 {
-	for (int i = 0; environ[i] != NULL; i++)
+	int i = 0;
+	for (; environ[i] != NULL; i++)
 	{
 		puts(environ[i]);
 	}

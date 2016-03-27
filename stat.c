@@ -49,5 +49,6 @@ int main (int argc, char** argv)
 			if (e < 0) perror(argv[1]);
 		}
 	}
+	return 0;
 }
 

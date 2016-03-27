@@ -36,18 +36,14 @@ void printstats(char* path,size_t s)
 }
 int main (int argc, char** argv)
 {
-	if (argc == 2) printstats(argv[1],0);
-	else
+	char* line = NULL;
+	size_t n = 0;
+	ssize_t e = 1;
+	while (e != -1)
 	{
-		char* line = NULL;
-		size_t n = 0;
-		ssize_t e = 1;
-		while (e != -1)
-		{
-			printstats(line,e);
-			e = getline(&line,&n,stdin);
-			if (e < 0) perror(argv[1]);
-		}
+		printstats(line,e);
+		e = getline(&line,&n,stdin);
+		if (e < 0) perror(argv[1]);
 	}
 	return 0;
 }

@@ -36,6 +36,6 @@ int main(int argc, char* argv[]) {
 			perror(argv[1]);
 			return errno;
 		}
-		return 0;
 	}
+	return 0;
 }

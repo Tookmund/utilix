@@ -52,5 +52,6 @@ int main (int argc, char *argv[]) {
 			lsdir(argv[i]);
 		}
 	}
+	return 0;
 }
 

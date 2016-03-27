@@ -31,7 +31,8 @@ int main (int argc, char** argv)
 		return 1;
 	}
 	int e = 0;
-	for (int i = 1; i < argc; i++)
+	int i = 1;
+	for (; i < argc; i++)
 	{
 		e = remove(argv[i]);
 		if (e < 0) perror(argv[0]);

@@ -32,7 +32,7 @@ void printstats(char* path,size_t s)
 	if (s > 1) path[s-1] = 0;
 	int e = stat(path,&st);
 	if (e < 0) perror(path);
-	else printf("%o %ld %s\n",st.st_mode,st.st_size,path);
+	else printf("%o %lld %s\n",st.st_mode,st.st_size,path);
 }
 int main (int argc, char** argv)
 {

@@ -29,4 +29,5 @@ int main(int argc, char** argv)
 	if (argc < 2) printf("Usage: %s [directory]\n",argv[0]);
 	else e = rmdir(argv[1]);
 	if (e < 0) perror(argv[0]);
+	return 0;
 }

@@ -94,8 +94,8 @@ int main (int argc, char* argv[]) {
 			return 1;
 		}
 	}
-	int rd;
-	int wr;
+	int rd = 1;
+	int wr = 1;
 	// Non-blocking reads and writes
 	int fc = fcntl(ifd, F_SETFD, O_NONBLOCK);
 	if (fc < 0)

@@ -28,4 +28,5 @@ int main (int argc, char** argv)
 {
 	environ[0] = NULL;
 	execvp(argv[1],&argv[1]);
+	return 0;
 }

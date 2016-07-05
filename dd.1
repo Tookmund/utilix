@@ -1,0 +1,28 @@
+.TH man 1 "July 2016" "1.0" "dd man page"
+.SH NAME
+dd - Data Dump
+.SH SYNOPSIS
+.B dd
+[input] [output] [blocksize]
+.SH DESCRIPTION
+.B dd
+copies the contents of input to output using a buffer of size blocksize
+.SH OPTIONS
+.IP input
+Where 
+.B dd
+should read from. If passed  "-" then dd will use standard input
+.IP output
+Where
+.B dd
+should write to. If passed "-" then dd will use standard output
+.IP blocksize
+What size buffer
+.B dd
+should use, in megabytes. if this option is omitted, then
+.B dd
+will use 1 MB
+.SH SEE ALSO
+cat(1), sponge(1)
+.SH AUTHOR
+Jacob Adams <tookmund@gmail.com>

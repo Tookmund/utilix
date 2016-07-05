@@ -24,7 +24,7 @@
 #include <sys/stat.h>
 #include <errno.h>
 #include <stdio.h>
-#include "perm.h"
+#include "dirperm.h"
 
 int main(int argc, char* argv[]) {
 	if (argc < 2) {

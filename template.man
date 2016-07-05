@@ -1,4 +1,4 @@
-.TH man 8 "date" "1.0" "[name] man page"
+.TH man 1 "date" "1.0" "[name] man page"
 .SH NAME
 
 .SH SYNOPSIS

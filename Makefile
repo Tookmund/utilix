@@ -33,6 +33,7 @@ dd \
 env \
 ls \
 mkdir \
+mv \
 new \
 rm \
 rmdir \

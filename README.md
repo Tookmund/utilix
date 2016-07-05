@@ -21,7 +21,7 @@ Utilities needed
 * ~~dd~~
 * ~~rm~~
 * ~~rmdir~~
-* mv
+* ~~mv~~
 * stat (print one-line status of file)
 * cut (Get a specific token)
 * df

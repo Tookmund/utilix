@@ -47,7 +47,7 @@ int main (int argc, char* argv[]) {
 		}
 		buf = (char*)malloc(st.st_size);
 		if (buf == NULL) {
-			snprintf(pf,MAXBUF,"Malloc %s %lld",argv[i],st.st_size);
+			snprintf(pf,MAXBUF,"Malloc %s %lld",argv[i],(long long int)st.st_size);
 			perror(pf);
 			continue;
 		}

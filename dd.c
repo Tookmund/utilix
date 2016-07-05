@@ -45,7 +45,7 @@ int main (int argc, char* argv[]) {
 	int ifd;
 	int ofd;
 	mode_t mode = FILEMODE;
-	char* buf;
+	void* buf;
 	// Check stdin and stdout (indicated by - )
 	if (strcmp(argv[1],"-") == 0) {
 		ifd = 0;
@@ -76,11 +76,24 @@ int main (int argc, char* argv[]) {
 			return 1;
 		}
 	}
+	// Convert to FILE* to read and write binary files
+	FILE* iff = fdopen(ifd,"rb");
+	if (iff == NULL)
+	{
+		perror("dd: Convert ifd to iff");
+		exit(1);
+	}
+	FILE* off = fdopen(ofd,"wb");
+	if (off == NULL)
+	{
+		perror("dd: Convert ofd to off");
+		exit(1);
+	}
 	int bs;
 	if (argc == 4) {
 		bs = strtol(argv[3],NULL,10)*MB;
 		if (bs <= 0) bs = MB;
-		buf = (char*)malloc(bs);
+		buf = malloc(bs);
 		if (buf == NULL) {
 			perror(argv[3]);
 			return 1;
@@ -88,7 +101,7 @@ int main (int argc, char* argv[]) {
 	}
 	else {
 		bs = 1000;
-		buf = (char*)malloc(bs);
+		buf = malloc(bs);
 		if (buf == NULL) {
 			perror("Malloc");
 			return 1;
@@ -111,16 +124,16 @@ int main (int argc, char* argv[]) {
 	}
 	while (rd > 0 && wr >= 0)
 	{
-		rd = read(ifd,buf,bs);
+		rd = fread(buf,bs,1,iff);
 		if (rd < 0)
 		{
-			perror("dd ifd read");
+			perror("dd iff read");
 			return 1;
 		}
-		wr = write(ofd,buf,bs);
+		wr = fwrite(buf,bs,1,off);
 		if (wr < 0)
 		{
-			perror("dd ofd write");
+			perror("dd off write");
 			return 1;
 		}
 		memset(buf,0,bs);

@@ -29,3 +29,4 @@ Utilities needed
 * sort (sort strings; punctution, numbers, letters)
 * column
 * match (search for exact string)
+* sponge (write all of stdin to file; inspired by moreutils)

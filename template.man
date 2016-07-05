@@ -1,0 +1,14 @@
+.TH man 8 "date" "1.0" "[name] man page"
+.SH NAME
+
+.SH SYNOPSIS
+
+.SH DESCRIPTION
+
+.SH EXAMPLES
+
+.SH SEE ALSO
+
+.SH AUTHOR
+Jacob Adams <tookmund@gmail.com>
+

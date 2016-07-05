@@ -32,8 +32,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "perm.h"
-
 // MB is 1000 KD is 1000 B
 #define MB (1000*1000*1000)
 #define ERRSIZE 100
@@ -42,52 +40,33 @@ int main (int argc, char* argv[]) {
 	if (argc < 3 || argc > 4) {
 		printf("%s [input] [output] [optional-blocksize-in-MB]",argv[0]);
 	}
-	int ifd;
-	int ofd;
-	mode_t mode = FILEMODE;
+	FILE* iff;
+	FILE* off;
 	void* buf;
 	// Check stdin and stdout (indicated by - )
 	if (strcmp(argv[1],"-") == 0) {
-		ifd = 0;
+		iff = stdin;
 	}
 	else
 	{
-		ifd = open(argv[1], O_RDONLY | O_CREAT,mode);
-		if (ifd  < 0)
+		iff = fopen(argv[1], "r");
+		if (iff == NULL)
 		{
-			perror("dd ifd open");
+			perror("dd iff open");
 			return 1;
 		}
-		// Get mode
-		struct stat st;
-		int e = fstat(ifd,&st);
-		if (e < 0) perror("dd ifd fstat");
-		else mode = st.st_mode;
 	}
 	if (strcmp(argv[2],"-") == 0) {
-		ofd = 1;
+		off = stdout;
 	}
 	else
 	{
-		ofd = open(argv[2],O_WRONLY | O_CREAT | O_TRUNC,mode);
-		if (ofd < 0)
+		off = fopen(argv[2],"w");
+		if (off == NULL)
 		{
-			perror("dd ofd open");
+			perror("dd off open");
 			return 1;
 		}
-	}
-	// Convert to FILE* to read and write binary files
-	FILE* iff = fdopen(ifd,"rb");
-	if (iff == NULL)
-	{
-		perror("dd: Convert ifd to iff");
-		exit(1);
-	}
-	FILE* off = fdopen(ofd,"wb");
-	if (off == NULL)
-	{
-		perror("dd: Convert ofd to off");
-		exit(1);
 	}
 	int bs;
 	if (argc == 4) {
@@ -109,19 +88,6 @@ int main (int argc, char* argv[]) {
 	}
 	int rd = 1;
 	int wr = 1;
-	// Non-blocking reads and writes
-	int fc = fcntl(ifd, F_SETFD, O_NONBLOCK);
-	if (fc < 0)
-	{
-		perror("dd ifd fcntl");
-		return 1;
-	}
-	fc = fcntl(ofd, F_SETFD, O_NONBLOCK);
-	if (fc < 0)
-	{
-		perror("dd ofd fcntl");
-		return 1;
-	}
 	while (rd > 0 && wr >= 0)
 	{
 		rd = fread(buf,bs,1,iff);

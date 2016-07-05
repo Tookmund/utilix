@@ -22,8 +22,7 @@
 CFLAGS += -Wall -Werror
 BIN = ${DESTDIR}/usr/local/bin
 
-MANSUFFIX = 1
-MANDIR = ${DESTDIR}/usr/local/share/man/man${MANSUFFIX}
+MANDIR = ${DESTDIR}/usr/local/share/man/man1
 
 
 # Should be alphabetical
@@ -66,7 +65,7 @@ install.man:
 	mkdir -p $(MANDIR)
 	for i in ${TGTS} ; \
 	do \
-		cp $${i}.man $(MANDIR)/$${i}.$(MANSUFFIX) ; \
+		cp $${i}.1 $(MANDIR) ; \
 	done
 
 uninstall.man:

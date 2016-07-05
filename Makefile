@@ -37,6 +37,7 @@ mv \
 new \
 rm \
 rmdir \
+sponge \
 stat \
 unenv \
 unpg

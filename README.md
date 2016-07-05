@@ -30,3 +30,4 @@ Utilities needed
 * column
 * match (search for exact string)
 * ~~sponge (write all of stdin to file; inspired by moreutils)~~
+* append (like sponge except appending)

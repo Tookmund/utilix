@@ -35,4 +35,13 @@
  * SUCH DAMAGE.
  */
 
-#define FILEMODE     (S_IRUSR|S_IWUSR|S_IRGRP|S_IWGRP|S_IROTH|S_IWOTH)
+/*
+ * The default file mode is a=rwx (0777) with selected permissions
+ * removed in accordance with the file mode creation mask.  For
+ * intermediate path name components, the mode is the default modified
+  * by u+wx so that the subdirectories can always be created.
+ */
+mode_t getdirmode()
+{
+	return ( 0777 & ~umask(0) ) | S_IWUSR | S_IXUSR;
+}

@@ -20,9 +20,10 @@
  # DEALINGS IN THE SOFTWARE.
 
 CFLAGS += -Wall -Werror
-BIN = ${DESTDIR}/usr/local/bin
+PREFIX ?= /usr/local/
+BIN = $(DESTDIR)/$(PREFIX)/bin
 
-MANDIR = ${DESTDIR}/usr/local/share/man/man1
+MANDIR = $(DESTDIR)/$(PREFIX)/share/man/man1
 
 # Should be alphabetical
 TGTS= \

@@ -47,7 +47,7 @@ all: ${TGTS}
 include utilish/ish.mk
 
 clean:
-	rm ${TGTS}
+	rm -f ${TGTS}
 
 install: ${TGTS}
 	mkdir -p ${BIN}

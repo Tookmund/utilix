@@ -24,8 +24,6 @@ BIN = ${DESTDIR}/usr/local/bin
 
 MANDIR = ${DESTDIR}/usr/local/share/man/man1
 
-include ish/Makefile
-
 # Should be alphabetical
 TGTS= \
 cat \
@@ -44,6 +42,8 @@ unenv \
 unpg
 
 all: ${TGTS}
+
+include utilish/ish.mk
 
 clean:
 	rm ${TGTS}

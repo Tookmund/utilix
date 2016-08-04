@@ -20,9 +20,5 @@
  # DEALINGS IN THE SOFTWARE.
  #
 
-CFLAGS = -Wall -Werror
-
-ish: ish.c ish.h
-	${CC} ${CFLAGS} ish.c -o ish
-clean:
-	rm ish
+ish: utilish/ish.c utilish/ish.h
+	${CC} ${CFLAGS} utilish/ish.c -o ish

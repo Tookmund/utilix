@@ -24,12 +24,14 @@ BIN = ${DESTDIR}/usr/local/bin
 
 MANDIR = ${DESTDIR}/usr/local/share/man/man1
 
+include ish/Makefile
 
 # Should be alphabetical
 TGTS= \
 cat \
 dd \
 env \
+ish \
 ls \
 mkdir \
 mv \

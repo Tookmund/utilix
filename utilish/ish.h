@@ -19,11 +19,11 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
-
 void prompt()
 {
-	// TODO: Actual prompt with PS1 and stuff
-	printf("[$] ");
+	char* user = getenv("USER");
+	char* pwd = getenv("PWD");
+	printf("%s@%s[$] ", user, pwd);
 }
 
 char** getargv(char* s, char* delim)
@@ -66,6 +66,7 @@ int checkkeywords (char** argv)
 	{
 		if (argv[1] != NULL) chdir(argv[1]);
 		else chdir(getenv("HOME"));
+		setenv("PWD",getcwd(NULL,0),1);
 	}
 	else ret = 0;
 	return ret;

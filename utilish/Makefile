@@ -20,5 +20,5 @@
  # DEALINGS IN THE SOFTWARE.
  #
 
-ish: utilish/ish.c utilish/ish.h
-	${CC} ${CFLAGS} utilish/ish.c -o ish
+../ish: ish.c ish.h
+	${CC} ${CFLAGS} ish.c -o ../ish

@@ -44,8 +44,8 @@ unpg
 
 all: ${TGTS}
 
-include utilish/ish.mk
-
+ish: utilish/*.c utilish/*.h
+	cd utilish && make
 clean:
 	rm -f ${TGTS}
 

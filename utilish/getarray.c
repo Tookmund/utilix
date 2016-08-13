@@ -20,9 +20,7 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include "ish.h"
 
 char** getarray(char* s, char* delim)
 {

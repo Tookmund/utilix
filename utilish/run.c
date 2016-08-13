@@ -1,4 +1,4 @@
-/* ish.h -- Helper functions for ish
+/* run.c -- Run a setup program for ish
  * Copyright 2016 Jacob Adams <tookmund@gmail.com>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a
@@ -19,18 +19,29 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
-
-void prompt();
-
-char** getarray(char* s, char* delim);
-
-int checkkeywords (char** argv);
-
-void eval(char* s, int pipes);
-
-int run (char* s,int in,int out);
+#include "ish.h"
+int run (char* s,int in,int out)
+{
+        char** argv = getarray(s," ");
+        if (argv == NULL) return -1;
+        if (checkkeywords(argv)) return 0;
+        int pid = fork();
+        switch (pid)
+        {
+                case 0:
+                        if (in != 0) dup2(in,0);
+                        if (out != 1) dup2(out,1);
+                        execvp(argv[0],argv);
+                        // Only returns if something went wrong
+                        perror("ish execvp");
+                        break;
+                case -1:
+                        perror("ish fork");
+                default:
+                        free(argv);
+                        if (in != 0) close(in);
+                        if (out != 1) close(out);
+                        return pid;
+        }
+        return 0;
+}

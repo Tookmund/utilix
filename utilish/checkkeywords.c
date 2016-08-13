@@ -1,4 +1,4 @@
-/* ish.h -- Helper functions for ish
+/* checkkeywords.c -- Evaluate built-in shell functions for ish
  * Copyright 2016 Jacob Adams <tookmund@gmail.com>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a
@@ -19,18 +19,17 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
-
-void prompt();
-
-char** getarray(char* s, char* delim);
-
-int checkkeywords (char** argv);
-
-void eval(char* s, int pipes);
-
-int run (char* s,int in,int out);
+#include "ish.h"
+int checkkeywords (char** argv)
+{
+        int ret = 1;
+        if (strcmp(argv[0],"exit") == 0) exit(0);
+        else if (strcmp(argv[0],"cd") == 0)
+        {
+                if (argv[1] != NULL) chdir(argv[1]);
+                else chdir(getenv("HOME"));
+                setenv("PWD",getcwd(NULL,0),1);
+        }
+        else ret = 0;
+        return ret;
+}

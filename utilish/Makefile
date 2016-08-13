@@ -20,5 +20,7 @@
  # DEALINGS IN THE SOFTWARE.
  #
 
-../ish: ish.c ish.h
-	${CC} ${CFLAGS} ish.c -o ../ish
+../ish: ish.o ish.h getarray.o eval.o checkkeywords.o run.o prompt.o
+	${CC} ${CFLAGS} *.o -o ../ish
+clean:
+	rm -f ../ish *.o

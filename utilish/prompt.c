@@ -1,4 +1,4 @@
-/* ish.h -- Helper functions for ish
+/* prompt.c -- Generate prompt for ish
  * Copyright 2016 Jacob Adams <tookmund@gmail.com>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a
@@ -19,18 +19,11 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
+#include "ish.h"
+void prompt()
+{
+        char* user = getenv("USER");
+        char* pwd = getenv("PWD");
+        printf("%s@%s[$] ", user, pwd);
+}
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
-
-void prompt();
-
-char** getarray(char* s, char* delim);
-
-int checkkeywords (char** argv);
-
-void eval(char* s, int pipes);
-
-int run (char* s,int in,int out);

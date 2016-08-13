@@ -20,9 +20,6 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <string.h>
@@ -33,43 +30,7 @@
 // Not sure why this is a thing but whatever
 typedef void (*sighandler_t)(int);
 
-void eval(char* s, int pipes)
-{
-	pid_t* pids = malloc(sizeof(pid_t*)*(pipes+1));
-	if (!pipes) pids[0] = run(s,0,1);
-	else
-	{
-		char** programs = getargv(s,"|");
-		if (programs == NULL) return;
-		int* oldpipes = NULL;
-		int* newpipes = NULL;
-		for (int i = 0; i <= pipes; i++)
-		{
-			newpipes = malloc(sizeof(int)*2);
-			if (newpipes == NULL)
-			{
-				perror("ish malloc newpipes");
-				return;
-			}
-			int p = pipe(newpipes);
-			if (p < 0)
-			{
-				perror("ish pipe");
-				return;
-			}
-			if (programs[i+1] == NULL) newpipes[1] = 1;
-			if (oldpipes == NULL) pids[i] = run(programs[i],0,newpipes[1]);
-			else pids[i] = run(programs[i],oldpipes[0],newpipes[1]);
-			free(oldpipes);
-			oldpipes = newpipes;
-		}
-	}
-	// Allow everything to finish up
-	for (int i = 0; i <= pipes; i++)
-	{
-		waitpid(pids[i],NULL,0);
-	}
-}
+void eval(char* s, int pipes);
 
 int main (int argc, char** argv)
 {

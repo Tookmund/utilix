@@ -1,4 +1,4 @@
-/* ish.h -- Helper functions for ish
+/* getarray.c -- Get an array from a space-separated string 
  * Copyright 2016 Jacob Adams <tookmund@gmail.com>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a
@@ -23,14 +23,35 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <unistd.h>
 
-void prompt();
-
-char** getarray(char* s, char* delim);
-
-int checkkeywords (char** argv);
-
-void eval(char* s, int pipes);
-
-int run (char* s,int in,int out);
+char** getarray(char* s, char* delim)
+{
+        char* arg = strtok(s,delim);
+        if (arg == NULL) return NULL;
+        size_t argc = sizeof(char*)*2;
+        int i = 1;
+        char** argv = malloc(argc);
+        if (argv == NULL)
+        {
+                perror("ish argv malloc");
+                return NULL;
+        }
+        argv[0] = arg;
+        while (arg != NULL)
+        {
+                arg = strtok(NULL,delim);
+                if (arg == NULL) continue;
+                argc += sizeof(char*);
+                argv = realloc(argv,argc);
+                if (argv == NULL)
+                {
+                        perror("ish argv realloc");
+                        free(argv);
+                        return NULL;
+                }
+                argv[i] = arg;
+                i++;
+        }
+        argv[i] = NULL;
+        return argv;
+}

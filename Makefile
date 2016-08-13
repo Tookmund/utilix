@@ -83,4 +83,5 @@ gitignore:
 	for i in ${TGTS} ; \
 	do \
 		echo $${i} >> .gitignore ; \
-	done
+	done ; \
+	echo "*.o" >> .gitignore

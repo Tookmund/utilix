@@ -19,6 +19,7 @@
  # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  # DEALINGS IN THE SOFTWARE.
  #
+include ../flags.mk
 
 ../ish: ish.o ish.h getarray.o eval.o checkkeywords.o run.o prompt.o
 	${CC} ${CFLAGS} *.o -o ../ish

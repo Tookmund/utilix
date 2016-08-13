@@ -34,3 +34,5 @@ int checkkeywords (char** argv);
 void eval(char* s, int pipes);
 
 int run (char* s,int in,int out);
+
+extern char* host;

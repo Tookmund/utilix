@@ -32,9 +32,13 @@ typedef void (*sighandler_t)(int);
 
 int main (int argc, char** argv)
 {
+	int hostlen = 100;
+	char hostbuf[hostlen];
+	char *host = hostbuf;
+	gethostname(host,hostlen);
+	setenv("PWD",getcwd(NULL,0),0);
 	sighandler_t sig = signal(SIGINT,SIG_IGN);
 	if (sig == SIG_ERR) perror("ish sigint");
-	char c = 1;
 	int bufsize = 100;
 	int curbuf = 0;
 	char* buf = (char*)malloc(bufsize);
@@ -56,7 +60,9 @@ int main (int argc, char** argv)
 	{
 		prompt();
 	}
+	setenv("PWD",getcwd(NULL,0),0);
 	int pipes = 0;
+	char c = 1;
 	while (c != EOF)
 	{
 		c = getchar();

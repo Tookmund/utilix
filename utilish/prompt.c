@@ -24,6 +24,6 @@ void prompt()
 {
         char* user = getenv("USER");
         char* pwd = getenv("PWD");
-        printf("%s@%s[$] ", user, pwd);
+        printf("%s@%s%s[$] ", user, host, pwd);
 }
 

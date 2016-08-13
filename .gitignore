@@ -12,3 +12,4 @@ sponge
 stat
 unenv
 unpg
+*.o

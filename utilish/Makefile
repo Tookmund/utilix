@@ -21,7 +21,7 @@
  #
 include ../flags.mk
 
-../ish: ish.o ish.h getarray.o eval.o checkkeywords.o run.o prompt.o
+../ish: main.o ish.h getarray.o eval.o checkkeywords.o run.o prompt.o
 	${CC} ${CFLAGS} *.o -o ../ish
 clean:
 	rm -f ../ish *.o

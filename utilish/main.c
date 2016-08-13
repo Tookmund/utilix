@@ -30,8 +30,6 @@
 // Not sure why this is a thing but whatever
 typedef void (*sighandler_t)(int);
 
-void eval(char* s, int pipes);
-
 int main (int argc, char** argv)
 {
 	sighandler_t sig = signal(SIGINT,SIG_IGN);
